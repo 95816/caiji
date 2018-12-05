@@ -9,7 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-return [
+/*return [
     '__pattern__' => [
         'name' => '\w+',
     ],
@@ -18,4 +18,9 @@ return [
         ':name' => ['index/hello', ['method' => 'post']],
     ],
 
-];
+];*/
+
+use think\Route;
+
+Route::rule('qv_list', 'index/Video/txList', 'post|get');
+Route::any('mv/show/:id', 'index/Video/show', ['method' => 'get|post'], ['id' => '\d+']);
