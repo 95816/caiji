@@ -230,7 +230,7 @@ class Index extends Controller
 
         $this->q = new QueryList();
         $this->q->use(CurlMulti::class);
-        $page = 40;
+        $page = 70;
         for ($i = $page; $i < $page + 3; $i++) {
             $urlArr[] = 'http://v.qq.com/x/list/movie?&offset=' . ($i * 30);
         }

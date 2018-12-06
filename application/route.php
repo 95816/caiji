@@ -22,5 +22,6 @@
 
 use think\Route;
 
-Route::rule('qv_list', 'index/Video/txList', 'post|get');
-Route::any('mv/show/:id', 'index/Video/show', ['method' => 'get|post'], ['id' => '\d+']);
+Route::rule('/', 'index/Video/txList', 'post|get');
+Route::any('show/:id', 'index/Video/show', ['method' => 'get|post'], ['id' => '\d+']);
+Route::any('play/:id', 'index/Video/play', ['method' => 'get|post'], ['id' => '\d+']);
