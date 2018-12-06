@@ -1,2 +1,5 @@
 /public/images/
 /public/static/images/
+/thinkphp/
+/runtime/
+/application/database.php
