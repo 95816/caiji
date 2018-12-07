@@ -1,0 +1,50 @@
+.pagination {
+    width: auto;
+    height: auto;
+    color: #333;
+    font-size: 15px;
+    float: right;
+    display: block;
+    margin-top: 30px;
+}
+
+.pagination:hover {
+    cursor: pointer;
+}
+
+.pagination li {
+    width: auto;
+    height: auto;
+    float: left;
+    display: block;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 15%;
+}
+
+.pagination li.active span {
+    display: inline-block;
+    min-width: 10px;
+    height: 30px;
+    margin: 0 5px;
+    padding: 0 10px;
+    line-height: 30px;
+    border: 1px solid #ff920b;
+    background: #ff920b;
+    text-align: center;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #fff;
+}
+.list-group-item {
+    word-break: keep-all;
+    width: 100%;
+    overflow: hidden;
+    padding: 8px 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.footermenu p {
+    margin-bottom: 0;
+}

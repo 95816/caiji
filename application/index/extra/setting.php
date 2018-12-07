@@ -16,4 +16,9 @@ return [
     '7' => 'https://vip.mpos.ren/v/?url=',
     '8' => 'https://jx.000180.top/jx/?url=',
     '9' => 'https://jx.km58.top/jx/?url=',
+    '10' => 'https://beaacc.com/api.php?url=',
+    '11' => 'http://api.hlglwl.com/jx.php?url=',
+    '12' => 'http://jqaaa.com/jx.php?url=',
+    '13' => 'http://api.wlzhan.com/sudu/?url=',
+    'code' => 'EmGD9RV2'
 ];

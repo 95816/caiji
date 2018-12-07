@@ -48,11 +48,15 @@ class Video extends Controller
     {
         if (request()->isPost()) {
             $io = request()->post('io');
+            $id = request()->post('id');
+            $copyfrom = TxVideos::where('id', $id)->value('copyfrom');
+            // 获取此id的copyfrom 真实地址
             $res = [
                 'code' => 200,
                 'status' => 1,
-                'url' => config('setting.' . $io),
-                'msg' => '不要整天研究人家接口了抓紧做站去吧!'
+                'url' => $this->secret(config('setting.' . $io)),
+                'r_url' => $this->secret($copyfrom),
+                'msg' => 'success'
             ];
         } else {
             $res = [
@@ -62,6 +66,18 @@ class Video extends Controller
             ];
         }
         return json($res);
+    }
+
+    // 加密
+    private function secret($url, $operation = false)
+    {
+        $code = md5(config('setting.code'));
+        $iv = substr($code, 0, 16);
+        $key = substr($code, 16);
+        if ($operation) {
+            return openssl_decrypt(base64_decode($url), "AES-128-CBC", $key, OPENSSL_RAW_DATA, $iv);
+        }
+        return base64_encode(openssl_encrypt($url, "AES-128-CBC", $key, OPENSSL_RAW_DATA, $iv));
     }
 
 

@@ -230,7 +230,7 @@ class Index extends Controller
 
         $this->q = new QueryList();
         $this->q->use(CurlMulti::class);
-        $page = 70;
+        $page = 73;
         for ($i = $page; $i < $page + 3; $i++) {
             $urlArr[] = 'http://v.qq.com/x/list/movie?&offset=' . ($i * 30);
         }
@@ -268,7 +268,7 @@ class Index extends Controller
                 })->all();
                 foreach ($data as $key => $val) {
                     //查询数据库是否存在,存在则跳过
-                    if (!TxVideos::get(['copyfrom' => 'https://www.baidu.com'])) {
+                    if (!TxVideos::get(['copyfrom' => $val['copyfrom']])) {
                         TxVideos::create($val);
                     }
                 }

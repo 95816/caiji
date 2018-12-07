@@ -6,83 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="renderer" content="webkit">
     <title r-notemplate="true">正在播放《{$data->title}》_高清</title>
-    <meta name="keywords" content="电影视频, 电影视频排行榜, 最新高清电影视频, 电影排行榜, 腾讯视频, 视频分享, 视频搜索, 视频播放,电影视频在线观看">
-    <meta name="description" content="腾讯视频是国内更新电影最快,收录电影,视频资源最全的网站,腾讯视频电影频道提供全新热门电影免费观看,海量高清正版电影在线观看,同步更新全国视频网站热映大片,包括欧美大片,日韩电影,华语电影等">
+    <meta name="keywords" content="电影视频, 电影视频排行榜, 最新高清电影视频, 电影排行榜, 视频分享, 视频搜索, 视频播放,电影视频在线观看">
+    <meta name="description" content="电影频道提供全新热门电影免费观看,海量高清正版电影在线观看,同步更新全国视频网站热映大片,包括欧美大片,日韩电影,华语电影等">
     <link rel="shortcut icon" href="https://v.qq.com/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/tengent/list_base.css">
     <link id="float-panel-css" rel="stylesheet" type="text/css" href="/static/tengent/x_poster_card.css">
     <link rel="stylesheet" type="text/css" href="/static/tengent/x_dialog.css">
-    <script>var URL = '{:url("/index/video/getUrl")}'</script>
+    <link rel="stylesheet" type="text/css" href="/static/tengent/video.css">
+    <script>var URL = '{:url("/index/video/getUrl")}';
+    var CODE = 'EmGD9RV2';</script>
 </head>
 <body class="page_list" _wind="scene=list&amp;pagename=movie&amp;ext=sort.19~offset.0" _r-cid="0">
-<div class="site_common_head">
-    <div class="site_head" id="new_vs_header">
-        <div class="head_line">
-            <div class="inner">
-            </div>
-        </div>
-        <div class="head_inner">
-            <h1 class="site_logo"><a href="#" class="link_logo" _stat="new_vs_header:logo"><strong class="link_inner">腾讯视频</strong></a></h1>
-            <div class="mod_search">
-                <form id="searchForm" action="https://v.qq.com/x/search/" method="get" target="_blank" class="search_form cf">
-                    <!-- 顶部搜索框 开始 -->
-                    <div class="search_inner">
-                        <label class="search_label" for="keywords">搜索关键词</label>
-                        <i class="icon icon_search">
-                            <svg class="svg_icon svg_icon_search" viewbox="0 0 20 20" width="20" height="20">
-                                <use xlink:href="#svg_icon_search"></use>
-                            </svg>
-                        </i>
-                        <div class="search_keywords">
-                            <input type="text" name="q" id="keywords" class="search_input" placeholder="如懿传" autocomplete="off" value="如懿传">
-                        </div>
-                        <input type="hidden" name="stag">
-                        <input type="hidden" name="smartbox_ab">
-                        <button class="search_btn" type="submit" _stat="new_vs_header:search"><span class="btn_inner">全网搜</span></button>
-                        <!-- <a class="btn_search_hot" href="#" target="_blank" _stat="new_vs_header:search_hotlist" title="全网热搜榜"><i class="icon icon_search_hot"><svg class="svg_icon svg_icon_search_hot" viewbox="0 0 20 20" width="20" height="20"><use xlink:href="#svg_icon_search_hot"></use></svg></i></a> -->
-                        <a class="btn_search_hot" href="#" target="_blank" _stat="new_vs_header:search_hotlist"><i class="icon_sm icon_search_hot_sm">
-                        </i><i class="icon_search_hot_animation"></i><span class="btn_inner">热搜榜</span></a>
-                    </div>
-                    <!-- 顶部搜索框 结束 -->
-                </form>
-                <div class="mod_smartbox none" id="smartbox">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- 快捷入口 结束 -->
-</div>
-
+{include file='/video/head' /}
 <div class="site_container site_container_filter" r-notemplate="true" _r-cid="1" _r-component="filter">
     <div class="container_inner">
         <div class="mod_filter">
             <div class="filter_list">
-                <a href="#" class="filter_item current open" _stat2="filter:channel|电影">电影</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|电视剧">电视剧</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|综艺">综艺</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|动漫">动漫</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|少儿">少儿</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|音乐">音乐</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|纪录片">纪录片</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|新闻">新闻</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|军事">军事</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|娱乐">娱乐</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|体育">体育</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|游戏">游戏</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|搞笑">搞笑</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|王者荣耀">王者荣耀</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|微电影">微电影</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|时尚">时尚</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|生活">生活</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|母婴">母婴</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|汽车">汽车</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|科技">科技</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|教育">教育</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|财经">财经</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|房产">房产</a>
-                <a href="#" class="filter_item" _stat2="filter:channel|旅游">旅游</a>
+                <a href="/" class="filter_item current open" _stat2="filter:channel|电影">电影</a>
+                <a href="/" class="filter_item" _stat2="filter:channel|电视剧">电视剧</a>
             </div>
         </div>
 
@@ -91,6 +34,7 @@
 <div class="site_container container_main" r-notemplate="true" _r-cid="3" _r-component="index">
     <div class="container_inner">
         <!--标题-->
+        <input type="hidden" value="{$data->id}" name="smartbox_from">
         <div class="col-md-12">
             <h2 style="font-size: 28px;font-weight: bold">正在播放:{$data->title} <span style="color: #4b4b4b">({$data->year})</span></h2>
         </div>
@@ -99,7 +43,7 @@
             <div class="col-md-9 player" id="player"></div>
             <!--右边-->
             <div class="col-md-3">
-                <img class="img-thumbnail" alt="极速之龙" width="90%" src="/static/images/zhifubao.png">
+                <img class="img-thumbnail" alt="扫码领红包,福利多多" title="扫码领红包,福利多多" width="90%" src="/static/images/zhifubao.png">
 
                 <div class="list-group" style="margin-top: 30px;">
                     <a class="list-group-item list-head" style="background: #f5f5f5;font-size: 16px;font-weight: bolder;color:#ff0000">
@@ -111,28 +55,12 @@
                     <span class="list-group-item">3、有的播放不了请切换线路多刷新几下，试试。</span>
                 </div>
             </div>
-            <style>
-                .list-group-item {
-                    word-break: keep-all;
-                    width: 90%;
-                    overflow: hidden;
-                    padding: 8px 10px;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                }
-            </style>
-            <div class="col-md-10" style="margin:10px auto">
-                <button type="button" class="btn btn-success" onclick="play(1)"> 线路1</button>
-                <button type="button" class="btn btn-success" onclick="play(2)"> 线路2</button>
-                <button type="button" class="btn btn-success" onclick="play(3)"> 线路3</button>
-                <button type="button" class="btn btn-success" onclick="play(4)"> 线路4</button>
-                <button type="button" class="btn btn-success" onclick="play(5)"> 线路5</button>
-                <button type="button" class="btn btn-success" onclick="play(6)"> 线路6</button>
-                <button type="button" class="btn btn-success" onclick="play(7)"> 线路7</button>
-                <button type="button" class="btn btn-success" onclick="play(8)"> 线路8</button>
-                <button type="button" class="btn btn-success" onclick="play(9)"> 线路9</button>
+            <div class="col-md-10" style="margin:10px 0px;">
+                <!--end 值必须多加1 ,因为生成的是 < end而不是<= ;-->
+                {for start="1" end="14"}
+                <button type="button" class="btn btn-success" onclick="play({$i})"> 线路{$i}</button>
+                {/for}
             </div>
-
         </div>
         <div class="row">
             <!--下面-->
@@ -143,117 +71,26 @@
                 </div>
             </div>
         </div>
-        <a href="{$data->copyfrom}" style="display: none" id="copyfrom"></a>
     </div>
 </div>
 <div class="site_footer">
     <div class="footer_inner">
-        <div class="mod_footer_contentinfo cf">
-            <div class="contentinfo_column contentinfo_channel">
-                <em class="contentinfo_title">热门频道</em>
-                <ul>
-                    <li><a href="#" target="_blank" title="电视剧" _stat="page_footer:channel_1">电视剧</a></li>
-                    <li><a href="#" target="_blank" title="综艺" _stat="page_footer:channel_2">综艺</a></li>
-                    <li><a href="#" target="_blank" title="电影" _stat="page_footer:channel_3">电影</a></li>
-                    <li><a href="#" target="_blank" title="搞笑" _stat="page_footer:channel_4">搞笑</a></li>
-                    <li><a href="#" target="_blank" title="娱乐" _stat="page_footer:channel_5">娱乐</a></li>
-                    <li><a href="#" target="_blank" title="MV" _stat="page_footer:channel_6">MV</a></li>
-                    <li><a href="#" target="_blank" title="动漫" _stat="page_footer:channel_7">动漫</a></li>
-                    <li><a href="#" target="_blank" title="游戏" _stat="page_footer:channel_8">游戏</a></li>
-                    <li><a href="#" target="_blank" title="VIP影院" _stat="page_footer:channel_9">VIP影院</a></li>
-                    <li><a href="#" target="_blank" title="英美剧" _stat="page_footer:channel_10">英美剧</a></li>
-                    <li><a href="#" target="_blank" title="纪录片" _stat="page_footer:channel_11">纪录片</a></li>
-                    <li><a href="#" target="_blank" title="新闻" _stat="page_footer:channel_12">新闻</a></li>
-                    <li><a href="#" target="_blank" title="体育" _stat="page_footer:channel_13">体育</a></li>
-                    <li><a href="#" target="_blank" title="生活" _stat="page_footer:channel_14">生活</a></li>
-                    <!--[if !IE]>|xGv00|37004d0491fa7d85db7e0b6349f3a048<![endif]-->
-                </ul>
-            </div>
-            <div class="contentinfo_column contentinfo_feature">
-                <em class="contentinfo_title">特色推荐</em>
-                <ul>
-                    <li><a href="#" target="_blank" title="原创自媒体" _stat="page_footer:rec_1">原创自媒体</a></li>
-                    <li><a href="#" target="_blank" title="微电影" _stat="page_footer:rec_2">微电影</a></li>
-                    <li><a href="#" target="_blank" title="拍客" _stat="page_footer:rec_3">拍客</a></li>
-                    <li><a href="#" target="_blank" title="杀毒软件" _stat="page_footer:rec_4">杀毒软件</a></li>
-                    <!--[if !IE]>|xGv00|d866fff45657538033983dd0d469c4f9<![endif]-->
-                </ul>
-            </div>
-            <div class="contentinfo_column contentinfo_download">
-                <em class="contentinfo_title">软件下载</em>
-                <div class="dl_list">
-                    <a class="item" target="_blank" href="#" _stat="page_footer:download_1">
-                        <i class="icon_l icon_phone_l">
-                            <svg class="svg_icon" viewbox="0 0 50 50" width="50" height="50">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_phone_l"></use>
-                            </svg>
-                        </i>
-                        <span class="text_icon">手机版</span>
-                    </a>
-                    <a class="item" target="_blank" href="#" _stat="page_footer:download_2">
-                        <i class="icon_l icon_win_l">
-                            <svg class="svg_icon" viewbox="0 0 50 50" width="50" height="50">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_win_l"></use>
-                            </svg>
-                        </i>
-                        <span class="text_icon">Windows版</span>
-                    </a>
-                    <a class="item" target="_blank" href="#" _stat="page_footer:download_3">
-                        <i class="icon_l icon_mac_l">
-                            <svg class="svg_icon" viewbox="0 0 50 50" width="50" height="50">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mac_l"></use>
-                            </svg>
-                        </i>
-                        <span class="text_icon">Mac版</span>
-                    </a>
-                    <a class="item" target="_blank" href="#" _stat="page_footer:download_4">
-                        <i class="icon_l icon_ipad_l">
-                            <svg class="svg_icon" viewbox="0 0 50 50" width="50" height="50">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_ipad_l"></use>
-                            </svg>
-                        </i>
-                        <span class="text_icon">iPad版</span>
-                    </a>
-                    <a class="item" target="_blank" href="#" _stat="page_footer:download_5">
-                        <i class="icon_l icon_tv_l">
-                            <svg class="svg_icon" viewbox="0 0 50 50" width="50" height="50">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_tv_l"></use>
-                            </svg>
-                        </i>
-                        <span class="text_icon">TV版</span>
-                    </a>
-                </div>
-            </div>
-            <div class="contentinfo_column contentinfo_service">
-                <em class="contentinfo_title">服务</em>
-                <ul>
-                    <li><a href="#" target="_blank" title="客服" _stat="page_footer:service_1">客服</a></li>
-                    <li><a href="#" target="_blank" title="反馈" _stat="page_footer:service_2">反馈</a></li>
-                    <li><a href="#" target="_blank" title="侵权投诉" _stat="page_footer:service_3">侵权投诉</a></li>
-                    <li><a href="#" target="_blank" title="免广告合作" _stat="page_footer:service_4">免广告合作</a></li>
-                    <!--[if !IE]>|xGv00|50fe2943e16f80a385ff71c4cab27aa4<![endif]-->
-                </ul>
-            </div>
-        </div>
         <div class="mod_footer">
             <!--placeholder-->
             <div class="footermenu">
-                <a href="#" rel="nofollow" target="_blank">关于腾讯</a> | <a href="#" rel="nofollow" target="_blank">About Tencent</a> | <a href="#" rel="nofollow"
-                                                                                                                                        target="_blank">服务条款</a>
-                | <a href="#" rel="nofollow" target="_blank">广告服务</a> | <a href="#" rel="nofollow" target="_blank">腾讯招聘</a> | <a href="#" rel="nofollow"
-                                                                                                                                 target="_blank">客服中心</a> | <a
-                    href="#" rel="nofollow" target="_blank">网站导航</a>
+                <p>免责声明:本网站为非赢利性站点，本网站所有内容均来源于互联网相关站点自动搜索采集信息，相关链接已经注明来源。</p>
+                <p>目前正在筛选并逐步删除程序自动搜索采集到的不提供分享的版权影视。</p>
+                <p>若侵犯了您的权益，请即时发邮件 linuxshao@163.com 通知站长,给你带来的不便深感抱歉.万分感谢！</p>
             </div>
             <div class="copyrighten">
-                Copyright © 1998 -
+                Copyright © 2017 -
                 <span>
     <script>document.write(new Date().getFullYear());</script>
         2018
-    </span> Tencent. <a target="_blank" href="#" rel="nofollow">All Rights Reserved.</a>
+    </span> www.aiqihui.xin <a target="_blank" href="#" rel="nofollow">All Rights Reserved.</a>
             </div>
             <div class="copyrightzh">
-                腾讯公司
-                <a target="_blank" href="#" rel="nofollow">版权所有</a><a target="_blank" href="#" rel="nofollow">腾讯网络文化经营许可证</a>
+                <a target="_blank" href="/" rel="nofollow">♥ 乐看影视</a>
             </div>
         </div>
     </div>
@@ -265,6 +102,11 @@
         crossorigin="anonymous"></script>
 <script src="/static/tengent/js/jquery.min.js"></script>
 <script src="/static/tengent/js/bootstrap.js"></script>
+<script src="/static/cryptojs/core.js"></script>
+<script src="/static/cryptojs/enc-base64.js"></script>
+<script src="/static/cryptojs/cipher-core.js"></script>
+<script src="/static/cryptojs/aes.js"></script>
+<script src="/static/cryptojs/md5.js"></script>
 <script src="/static/tengent/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </html>
