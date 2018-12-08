@@ -9,7 +9,7 @@
 return [
     '1' => 'http://jx.52xftv.cn/?url=',
     '2' => 'https://cdn.yangju.vip/k/?url=',
-    '3' => 'https://jx.lache.me/cc/?url=',
+    '3' => 'https://beaacc.com/api.php?url=',
     '4' => 'http://cn.bjbanshan.cn/jiexi.php?url=',
     '5' => 'https://api.653520.top/vip/?url=',
     '6' => 'https://jx.ab33.top/vip/?url=',
