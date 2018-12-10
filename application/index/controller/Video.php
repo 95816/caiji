@@ -14,16 +14,17 @@ use think\Controller;
 
 class Video extends Controller
 {
-    public function txList()
+    public function movie_list()
     {
-        $list = TxVideos::paginate(30);
+        $type = request()->get('type_id') ? request()->get('type_id') : 1;
+        $list = TxVideos::where('type_id', $type)->paginate(30);
         $this->assign('list', $list);
-        return $this->fetch();
+        return $this->fetch('video/list');
     }
 
     public function show($id)
     {
-        $data = TxVideos::get($id, true);
+        $data = TxVideos::with('items')->find($id, true)->toArray();
         //获取最新10条
         $hot_mvs = TxVideos::order('score', 'desc')->limit(10)->select();
         $this->assign('data', $data);

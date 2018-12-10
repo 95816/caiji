@@ -12,5 +12,8 @@ use think\Model;
 
 class TxVideos extends Model
 {
-
+    public function items()
+    {
+        return $this->hasMany('app\caiji\model\TvChild', 'tv_id', 'id');
+    }
 }

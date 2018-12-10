@@ -31,21 +31,21 @@
 <div class="site_container container_main" r-notemplate="true" _r-cid="3" _r-component="index">
     <div class="container_inner">
         <!--面包屑-->
-        <p class="col-md-12"><a href="/">首页</a> / <a href="">电影</a> / 极速之龙</p>
+        <p class="col-md-12"><a href="/">首页</a> / <a href="">电影</a> / {$data['title']}</p>
         <!--标题-->
         <div class="col-md-12">
-            <h2 style="font-size: 28px;font-weight: bold">{$data->title} <span style="color: #4b4b4b">({$data->year})</span></h2>
+            <h2 style="font-size: 28px;font-weight: bold">{$data['title']} <span style="color: #4b4b4b">({$data['year']})</span></h2>
         </div>
         <div class="row">
             <!--左边-->
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="/play/{$data->id}.html">
-                            <img class="img-thumbnail" alt="极速之龙" width="100%" src="{$data->thumb}">
+                        <a href="/play/{$data['id']}.html">
+                            <img class="img-thumbnail" alt="{$data['title']}" width="100%" src="{$data['thumb']}">
                         </a>
                         <div class="online-button">
-                            <a target="_blank" class="btn btn-success btn-block" href="/play/{$data->id}.html">立即播放</a>
+                            <a target="_blank" class="btn btn-success btn-block" href="/play/{$data['id']}.html">立即播放</a>
                         </div>
                     </div>
                     <div class="col-md-9" style="padding-right: 5px">
@@ -53,39 +53,39 @@
                             <tbody>
                             <tr>
                                 <td class="span2"><span class="info-label">名称</span></td>
-                                <td>{$data->title} {$data->title_en? ' / '.$data->title_en : ''}</td>
+                                <td>{$data['title']} {$data['title_en']? ' / '.$data['title_en'] : ''}</td>
                             </tr>
                             <tr>
                                 <td class="span2"><span class="info-label">导演</span></td>
-                                <td>{$data->director}</td>
+                                <td>{$data['director']}</td>
                             </tr>
                             <tr>
                                 <td class="span2"><span class="info-label">主演</span></td>
-                                <td id="casts" style="position:relative;">{$data->leading_actor}</td>
+                                <td id="casts" style="position:relative;">{$data['leading_actor']}</td>
                             </tr>
                             <tr>
                                 <td class="span2"><span class="info-label">类型</span></td>
-                                <td>{$data->subtype}</td>
+                                <td>{$data['subtype']}</td>
                             </tr>
                             <tr>
                                 <td class="span2"><span class="info-label">国家/地区</span></td>
-                                <td>{$data->area_name}</td>
+                                <td>{$data['area_name']}</td>
                             </tr>
                             <tr>
                                 <td class="span2"><span class="info-label">上映日期</span></td>
-                                <td>{$data->publish_date}</td>
+                                <td>{$data['publish_date']}</td>
                             </tr>
                             <tr>
                                 <td class="span2"><span class="info-label">播放量</span></td>
-                                <td>{$data->num}</td>
+                                <td>{$data['num']}</td>
                             </tr>
                             <tr>
                                 <td class="span2"><span class="info-label">评分</span></td>
-                                <td>{$data->score}</td>
+                                <td>{$data['score']}</td>
                             </tr>
                             </tbody>
                         </table>
-                        <p style="color:#777;"><strong>剧情介绍：</strong>{$data->description}</p>
+                        <p style="color:#777;"><strong>剧情介绍：</strong>{$data['description']}</p>
                         <p class="summary"></p>
                     </div>
                 </div>
@@ -103,11 +103,29 @@
                     {/volist}
                 </div>
             </div>
+            <style>
+                .btn-sm {
+                    background-color: #337ab7;
+                    border-color: #2e6da4;
+                    margin: 3px 2px;
+                    width: 62px;
+                }
+
+                .btn-sm:hover {
+                    background-color: #2e6da4;
+                }
+            </style>
+            <!--选集-->
+            <div class="col-md-12" style="margin-bottom: 10px;">
+                {volist name="$data['items']" id="val" key="k"}
+                <a href="<?php echo str_replace('.html','',$data['copyfrom'])?>/{$val.child_id.'.html'}" class="btn btn-success btn-sm" role="button">第{$k}集</a>
+                {/volist}
+            </div>
             <!--下面-->
             <div class="col-md-12">
                 <div class="list-group">
                     <a class="list-group-item list-head" style="background: #f5f5f5;font-size: 16px;font-weight: bolder;color:#ff0000">
-                        <i class="glyphicon glyphicon-film danger"></i> <strong>《{$data->title}》 - 资源观看帮助：</strong>
+                        <i class="glyphicon glyphicon-film danger"></i> <strong>《{$data['title']}》 - 资源观看帮助：</strong>
                     </a>
                     <span class="list-group-item" style="font-size: 15px;font-weight: bolder;">如果有观看不了情况,优先切换线路尝试</span>
                     <span class="list-group-item">1、有个别电影打开后播放需要等待。</span>
