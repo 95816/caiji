@@ -1,1 +1,44 @@
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(11).C(4(){j(10)});4 j(b){3 c=m.5(o m());3 d=$("t:w[A=\'B\']").P();$.h({\'12\':\'15\',\'17\':{h:1,18:c,19:b,i:d,},\'l\':p,\'q\':\'r\',\'s\':4(a){u(a.v){f(a)}x{y(a.z)}}})}4 f(a){3 b=\'<g e="0" D="0" E="e: F G #H" I="J" K="0" L="0" M="N"\'+\'O="\'+6(a.l)+6(a.Q)+\'" R="S%" T="U"\'+\'                        V="W" i="X"></g>\';$(\'#Y\').Z(b)}4 6(a){7=2.13(14).k();3 b=2.8.9.5(7.n(0,16));3 c=2.8.9.5(7.n(16));1a 2.1b.1c(a,c,{1d:b,1e:2.1f.1g}).k(2.8.9)}',62,79,'||CryptoJS|var|function|parse|secret|code|enc|Utf8|||||border|set_action|iframe|ajax|id|play|toString|url|Date|substring|new|URL|dataType|json|success|input|if|status|hidden|else|alert|msg|name|smartbox_from|ready|frameborder|style|2px|solid|f0f0f0|height|660|marginheight|marginwidth|scrolling|no|src|val|r_url|width|100|allowfullscreen|true|allowtransparency|false|source|player|html||document|type|MD5|CODE|post||data|timestamp|io|return|AES|decrypt|iv|padding|pad|Pkcs7'.split('|'),0,{}))
+$(document).ready(function () {
+    play(10)
+});
+
+function play(b) {
+    var c = Date.parse(new Date());
+    var d = $("input:hidden[name='smartbox_from']").val();
+    var f = $("input:hidden[name='tv_child']").val();
+    $.ajax({
+        'type': 'post',
+        'data': {
+            ajax: 1,
+            timestamp: c,
+            io: b,
+            id: d,
+            cid: f
+        },
+        'url': URL,
+        'dataType': 'json',
+        'success': function (a) {
+            if (a.status) {
+                console.log(a);
+                set_action(a)
+            } else {
+                alert(a.msg)
+            }
+        }
+    })
+}
+
+function set_action(a) {
+    var b = '<iframe border="0" frameborder="0" style="border: 2px solid #f0f0f0" height="660" marginheight="0" marginwidth="0" scrolling="no"' + 'src="' + a.url + a.r_url + '" width="100%" allowfullscreen="true"' + ' allowtransparency="false" id="source"></iframe>';
+    $('#player').html(b)
+}
+
+function secret(a) {
+    code = CryptoJS.MD5(CODE).toString();
+    var b = CryptoJS.enc.Utf8.parse(code.substring(0, 16));
+    var c = CryptoJS.enc.Utf8.parse(code.substring(16));
+    return CryptoJS.AES.decrypt(a, c, {
+        iv: b,
+        padding: CryptoJS.pad.Pkcs7
+    }).toString(CryptoJS.enc.Utf8)
+}

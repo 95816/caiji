@@ -19,8 +19,8 @@
     <div class="container_inner">
         <div class="mod_filter">
             <div class="filter_list">
-                <a href="/" class="filter_item current open" _stat2="filter:channel|电影">电影</a>
-                <a href="/" class="filter_item" _stat2="filter:channel|电视剧">电视剧</a>
+                <a href="/" class="filter_item open {if empty($_GET['type_id'])}current{/if}" _stat2="filter:channel|电影">电影</a>
+                <a href="/?type_id=2" class="filter_item {if isset($_GET['type_id'])}current{/if}" _stat2="filter:channel|电视剧">电视剧</a>
             </div>
         </div>
         <div class="mod_filter_wrap">

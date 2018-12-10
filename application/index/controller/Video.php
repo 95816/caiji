@@ -9,6 +9,7 @@
 namespace app\index\controller;
 
 
+use app\caiji\model\TvChild;
 use app\index\model\TxVideos;
 use think\Controller;
 
@@ -32,12 +33,18 @@ class Video extends Controller
         return $this->fetch();
     }
 
-    public function play($id)
+    /*
+     * id 视频ID
+     * child_id 代表电视剧ID编号
+     * */
+    public function play($id, $child_id = null)
     {
-        $data = TxVideos::get($id, true);
+        $data = TxVideos::with('items')->find($id, true)->toArray();
+        //$data = TxVideos::get($id, true);
         //获取最新10条
         $new_mvs = TxVideos::order('publish_date', 'desc')->limit(10)->select();
         $this->assign('data', $data);
+        $this->assign('child_id', $child_id);
         $this->assign('new_mvs', $new_mvs);
 //        echo '<pre>';
 //        print_r($data);
@@ -50,15 +57,21 @@ class Video extends Controller
         if (request()->isPost()) {
             $io = request()->post('io');
             $id = request()->post('id');
+            $cid = request()->post('cid');
             $copyfrom = TxVideos::where('id', $id)->value('copyfrom');
             // 获取此id的copyfrom 真实地址
             $res = [
                 'code' => 200,
                 'status' => 1,
-                'url' => $this->secret(config('setting.' . $io)),
-                'r_url' => $this->secret($copyfrom),
+                'url' => config('setting.' . $io),
+                'r_url' => $copyfrom,
                 'msg' => 'success'
             ];
+            if (!empty($cid)) {
+                $child_v_id = TvChild::where('id', $cid)->value('child_id');
+                $r_url = str_replace('.html', '/' . $child_v_id . '.html', $copyfrom);
+                $res['r_url'] = $r_url;
+            }
         } else {
             $res = [
                 'code' => 403,

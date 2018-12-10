@@ -22,8 +22,8 @@
     <div class="container_inner">
         <div class="mod_filter">
             <div class="filter_list">
-                <a href="/" class="filter_item current open" _stat2="filter:channel|电影">电影</a>
-                <a href="/" class="filter_item" _stat2="filter:channel|电视剧">电视剧</a>
+                <a href="/" class="filter_item open {if empty($data['type_id'])}current{/if}" _stat2="filter:channel|电影">电影</a>
+                <a href="/?type_id=2" class="filter_item {if $data['type_id']==2}current{/if}" _stat2="filter:channel|电视剧">电视剧</a>
             </div>
         </div>
     </div>
@@ -45,7 +45,11 @@
                             <img class="img-thumbnail" alt="{$data['title']}" width="100%" src="{$data['thumb']}">
                         </a>
                         <div class="online-button">
+                            {if $data['type_id'] == 2 && !empty($data['items'])}
+                            <a target="_blank" class="btn btn-success btn-block" href="/play/{$data['id']}/{$data['items'][0]['id']}.html">立即播放</a>
+                            {else}
                             <a target="_blank" class="btn btn-success btn-block" href="/play/{$data['id']}.html">立即播放</a>
+                            {/if}
                         </div>
                     </div>
                     <div class="col-md-9" style="padding-right: 5px">
@@ -118,7 +122,7 @@
             <!--选集-->
             <div class="col-md-12" style="margin-bottom: 10px;">
                 {volist name="$data['items']" id="val" key="k"}
-                <a href="<?php echo str_replace('.html','',$data['copyfrom'])?>/{$val.child_id.'.html'}" class="btn btn-success btn-sm" role="button">第{$k}集</a>
+                <a href="/play/{$data['id']}/{$val.id.'.html'}" class="btn btn-success btn-sm" role="button">第{$k}集</a>
                 {/volist}
             </div>
             <!--下面-->
@@ -139,10 +143,13 @@
 </div>
 {include file='/video/foot' /}
 </body>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </html>

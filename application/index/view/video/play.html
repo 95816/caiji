@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="renderer" content="webkit">
-    <title r-notemplate="true">正在播放《{$data->title}》_高清</title>
+    <title r-notemplate="true">正在播放《{$data['title']}》_高清</title>
     <meta name="keywords" content="电影视频, 电影视频排行榜, 最新高清电影视频, 电影排行榜, 视频分享, 视频搜索, 视频播放,电影视频在线观看">
     <meta name="description" content="电影频道提供全新热门电影免费观看,海量高清正版电影在线观看,同步更新全国视频网站热映大片,包括欧美大片,日韩电影,华语电影等">
     <link rel="shortcut icon" href="/favicon.ico">
@@ -24,8 +24,8 @@
     <div class="container_inner">
         <div class="mod_filter">
             <div class="filter_list">
-                <a href="/" class="filter_item current open" _stat2="filter:channel|电影">电影</a>
-                <a href="/" class="filter_item" _stat2="filter:channel|电视剧">电视剧</a>
+                <a href="/" class="filter_item open {if empty($data['type_id'])}current{/if}" _stat2="filter:channel|电影">电影</a>
+                <a href="/?type_id=2" class="filter_item {if $data['type_id']==2}current{/if}" _stat2="filter:channel|电视剧">电视剧</a>
             </div>
         </div>
 
@@ -34,9 +34,10 @@
 <div class="site_container container_main" r-notemplate="true" _r-cid="3" _r-component="index">
     <div class="container_inner">
         <!--标题-->
-        <input type="hidden" value="{$data->id}" name="smartbox_from">
+        <input type="hidden" value="{$data['id']}" name="smartbox_from">
+        <input type="hidden" value="{$child_id}" name="tv_child">
         <div class="col-md-12">
-            <h2 style="font-size: 28px;font-weight: bold">正在播放:{$data->title} <span style="color: #4b4b4b">({$data->year})</span></h2>
+            <h2 style="font-size: 28px;font-weight: bold">正在播放:{$data['title']} <span style="color: #4b4b4b">({$data['year']})</span></h2>
         </div>
         <div class="row">
             <!--左边-->
@@ -47,7 +48,7 @@
 
                 <div class="list-group" style="margin-top: 30px;">
                     <a class="list-group-item list-head" style="background: #f5f5f5;font-size: 16px;font-weight: bolder;color:#ff0000">
-                        <i class="glyphicon glyphicon-film danger"></i> <strong>《{$data->title}》 - 资源观看帮助：</strong>
+                        <i class="glyphicon glyphicon-film danger"></i> <strong>《{$data['title']}》 - 资源观看帮助：</strong>
                     </a>
                     <span class="list-group-item" style="font-size: 15px;font-weight: bolder;">如果有观看不了情况,优先切换线路尝试</span>
                     <span class="list-group-item">1、有个别电影打开后播放需要等待。</span>
@@ -61,13 +62,33 @@
                 <button type="button" class="btn btn-success" onclick="play({$i})"> 线路{$i}</button>
                 {/for}
             </div>
+
+            <!--选集-->
+            <div class="col-md-9">
+                {volist name="$data['items']" id="val" key="k"}
+                <a href="/play/{$data['id']}/{$val.id.'.html'}" class="btn btn-success btn-sm" role="button">第{$k}集</a>
+                {/volist}
+            </div>
         </div>
+        <style>
+            .btn-sm {
+                background-color: #337ab7;
+                border-color: #2e6da4;
+                margin: 3px 2px;
+                width: 62px;
+            }
+
+            .btn-sm:hover {
+                background-color: #2e6da4;
+            }
+        </style>
+
         <div class="row">
             <!--下面-->
-            <div class="col-md-12" style="margin:12px auto" ;>
+            <div class="col-md-12" style="margin:12px auto">
                 <div class="col-md-9 center-block" style="border-top: 1px solid #f0f0f0;font-size: 14px;">
-                    <p style="color:#777;margin-top: 5px;"><strong>类型：</strong>{$data->subtype}</p>
-                    <p style="color:#777;"><strong>剧情介绍：</strong>{$data->description}</p>
+                    <p style="color:#777;margin-top: 5px;"><strong>类型：</strong>{$data['subtype']}</p>
+                    <p style="color:#777;"><strong>剧情介绍：</strong>{$data['description']}</p>
                 </div>
             </div>
         </div>
@@ -96,9 +117,11 @@
     </div>
 </div>
 </body>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="/static/tengent/js/jquery.min.js"></script>
 <script src="/static/tengent/js/bootstrap.js"></script>
