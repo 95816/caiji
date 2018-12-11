@@ -23,7 +23,7 @@ class Query
     {
         $this->q = new QueryList();
         // 采集页码数
-        $page = request()->get('page') ? request()->get('page') : 1;
+        $page = request()->get('page') ? request()->get('page') : 0;
         // 采集类型
         $type = request()->get('type') ? request()->get('type') : 'movie';
         $offset = $page * 30;
@@ -60,6 +60,7 @@ class Query
             $video_ids = !empty($val['video_ids']) ? $val['video_ids'] : '';
             unset($val['video_ids']);
             // type_id =1 是电影,2是电视剧
+            if (empty($val['type_id'])) continue;
             if ($val['type_id'] == 1) {
                 //查询数据库是否存在,存在则跳过
                 if (!TxVideos::get(['copyfrom' => $val['copyfrom'], 'title' => $val['title']])) {
@@ -80,15 +81,11 @@ class Query
                         // 删除
                         TvChild::where('tv_id', $res->id)->delete();
                         // 重新写入附表
-                        if (!empty($video_ids)) {
-                            $this->insert_tv_child($video_ids, $res->id);
-                        }
+                        $this->insert_tv_child($video_ids, $res->id);
                     }
                 } else {
-                    if (!empty($video_ids)) {
-                        $video = TxVideos::create($val);
-                        $this->insert_tv_child($video_ids, $video->id);
-                    }
+                    $video = TxVideos::create($val);
+                    $this->insert_tv_child($video_ids, $video->id);
                 }
             }
         }
