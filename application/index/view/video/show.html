@@ -22,7 +22,7 @@
     <div class="container_inner">
         <div class="mod_filter">
             <div class="filter_list">
-                <a href="/" class="filter_item open {if empty($data['type_id'])}current{/if}" _stat2="filter:channel|电影">电影</a>
+                <a href="/" class="filter_item open {if $data['type_id']==1}current{/if}" _stat2="filter:channel|电影">电影</a>
                 <a href="/?type_id=2" class="filter_item {if $data['type_id']==2}current{/if}" _stat2="filter:channel|电视剧">电视剧</a>
             </div>
         </div>
@@ -44,7 +44,7 @@
                         <a href="/play/{$data['id']}.html">
                             <img class="img-thumbnail" alt="{$data['title']}" width="100%" src="{$data['thumb']}">
                         </a>
-                        <div class="online-button">
+                        <div class="online-button" style="margin-top: 5px;">
                             {if $data['type_id'] == 2 && !empty($data['items'])}
                             <a target="_blank" class="btn btn-success btn-block" href="/play/{$data['id']}/{$data['items'][0]['id']}.html">立即播放</a>
                             {else}

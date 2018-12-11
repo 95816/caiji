@@ -19,8 +19,8 @@
     <div class="container_inner">
         <div class="mod_filter">
             <div class="filter_list">
-                <a href="/" class="filter_item open {if empty($_GET['type_id'])}current{/if}" _stat2="filter:channel|电影">电影</a>
-                <a href="/?type_id=2" class="filter_item {if isset($_GET['type_id'])}current{/if}" _stat2="filter:channel|电视剧">电视剧</a>
+                <a href="/?q={$q}" class="filter_item open {if $type_id == 1}current{/if}" _stat2="filter:channel|电影">电影</a>
+                <a href="/?type_id=2&q={$q}" class="filter_item {if $type_id == 2}current{/if}" _stat2="filter:channel|电视剧">电视剧</a>
             </div>
         </div>
         <div class="mod_filter_wrap">
@@ -108,20 +108,17 @@
                 <div class="mod_hd">
                     <div class="mod_row_filter">
                         <ul class="filter_tabs" r-notemplate="true" _r-cid="4" _r-component="tabs">
-                            <li class="item current">
-                                <a href="#" _stat2="tabs:sort|最新上架">最新上架</a>
+                            <li class="item {if empty($sort)}current{/if}">
+                                <a href="/?q={$q}&type_id={$type_id}" _stat2="tabs:sort|最新上架">全部</a>
                             </li>
-                            <li class="item">
-                                <a href="#" _stat2="tabs:sort|院线上映">院线上映</a>
+                            <li class="item {if $sort == 1}current{/if}">
+                                <a href="/?q={$q}&sort=1&type_id={$type_id}" _stat2="tabs:sort|最新上架">最新上架</a>
                             </li>
-                            <li class="item">
-                                <a href="#" _stat2="tabs:sort|最近热播">最近热播</a>
+                            <li class="item {if $sort == 2}current{/if}">
+                                <a href="/?q={$q}&sort=2&type_id={$type_id}" _stat2="tabs:sort|最近热播">最近热播</a>
                             </li>
-                            <li class="item">
-                                <a href="#" _stat2="tabs:sort|最受好评">最受好评</a>
-                            </li>
-                            <li class="item">
-                                <a href="#" _stat2="tabs:sort|豆瓣好评">豆瓣好评</a>
+                            <li class="item {if $sort == 3}current{/if}">
+                                <a href="/?q={$q}&sort=3&type_id={$type_id}" _stat2="tabs:sort|最受好评">最受好评</a>
                             </li>
                         </ul>
                         <div class="filter_option" r-notemplate="true">
@@ -141,7 +138,7 @@
                                         {if condition="$vo.type_id == 1"}
                                         <span class="figure_info">{$vo.second_title}</span>
                                         {else /}
-                                        <span class="figure_info">{$vo.episode_updated}</span>
+                                        <span class="figure_info">{if strstr($vo.summary,'更新')}更新至{$vo.current_num}集{else}全{$vo.current_num}集{/if}</span>
                                         {/if}
                                     </div>
                                 </a>

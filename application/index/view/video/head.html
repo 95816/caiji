@@ -7,7 +7,7 @@
         <div class="head_inner">
             <h1 class="site_logo"><a href="#" class="link_logo" _stat="new_vs_header:logo"><strong class="link_inner">乐看视频</strong></a></h1>
             <div class="mod_search">
-                <form id="searchForm" action="" method="get" target="_blank" class="search_form cf">
+                <form id="searchForm" action="{:url('/')}" method="get" target="_blank" class="search_form cf">
                     <!-- 顶部搜索框 开始 -->
                     <div class="search_inner">
                         <label class="search_label" for="keywords">搜索关键词</label>
@@ -17,17 +17,14 @@
                             </svg>
                         </i>
                         <div class="search_keywords">
-                            <input type="text" name="q" id="keywords" class="search_input" placeholder="如懿传" autocomplete="off" value="如懿传">
+                            <input type="text" name="q" id="keywords" class="search_input" autocomplete="off" value="{if !empty($_GET['q'])}{$_GET['q']}{/if}">
                         </div>
-                        <input type="hidden" name="stag">
-                        <input type="hidden" value="0" name="smartbox_ab">
                         <button class="search_btn" type="submit" _stat="new_vs_header:search"><span class="btn_inner">全网搜</span></button>
-                        <!-- <a class="btn_search_hot" href="#" target="_blank" _stat="new_vs_header:search_hotlist" title="全网热搜榜"><i class="icon icon_search_hot"><svg class="svg_icon svg_icon_search_hot" viewbox="0 0 20 20" width="20" height="20"><use xlink:href="#svg_icon_search_hot"></use></svg></i></a> -->
-                        <a class="btn_search_hot" href="#" target="_blank" _stat="new_vs_header:search_hotlist"><i class="icon_sm icon_search_hot_sm">
-                        </i><i class="icon_search_hot_animation"></i><span class="btn_inner">热搜榜</span></a>
                     </div>
                     <!-- 顶部搜索框 结束 -->
                 </form>
+                <input type="hidden" name="stag">
+                <input type="hidden" value="0" name="smartbox_ab">
                 <div class="mod_smartbox none" id="smartbox">
                 </div>
             </div>

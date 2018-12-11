@@ -17,9 +17,25 @@ class Video extends Controller
 {
     public function movie_list()
     {
+        $q = request()->get('q') ? request()->get('q') : '';
         $type = request()->get('type_id') ? request()->get('type_id') : 1;
-        $list = TxVideos::where('type_id', $type)->paginate(30);
+        $sort = request()->get('sort');
+        if ($sort == 1) {
+            $order = 'publish_date';
+        } elseif ($sort == 2) {
+            $order = 'num';
+        } elseif ($sort == 3) {
+            $order = 'score';
+        }
+        if (!empty($order)) {
+            $list = TxVideos::where('type_id', $type)->where('title', 'like', '%' . $q . '%')->order($order, 'desc')->paginate(30, false, ['query' => request()->param()]);
+        } else {
+            $list = TxVideos::where('type_id', $type)->where('title', 'like', '%' . $q . '%')->order('id', 'asc')->paginate(30, false, ['query' => request()->param()]);
+        }
         $this->assign('list', $list);
+        $this->assign('q', $q);
+        $this->assign('type_id', $type);
+        $this->assign('sort', $sort);
         return $this->fetch('video/list');
     }
 
